@@ -33,8 +33,7 @@ const Nav = () => {
         <li>
           <Link
             to="/logout"
-            className="bg-red-600 px-4 py-2 rounded-md hover:bg-red-700 transition duration-200"
-          >
+            className="bg-red-600 px-4 py-2 rounded-md hover:bg-red-700 transition duration-200">
             Logout
           </Link>
         </li>

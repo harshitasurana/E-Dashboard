@@ -2,13 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 
 const SignUp = () => {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const collectData=(e)=>{
-        e.preventDefault()
-        console.log(name,email,password)
-    }
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const collectData = (e) => {
+    e.preventDefault()
+    console.log(name, email, password)
+  }
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gray-100">
 
@@ -24,10 +24,10 @@ const SignUp = () => {
           <input
             type="text"
             placeholder="Full Name"
-            value={name} 
-            onChange={(e)=>{
-                setName(e.target.value)
-            }}  
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value)
+            }}
             className="w-full px-4 py-2.5 rounded-md
                        border border-gray-300
                        text-gray-900 placeholder-gray-400
@@ -38,40 +38,33 @@ const SignUp = () => {
             type="email"
             placeholder="Email Address"
             value={email}
-            onChange={(e)=>{
-                setEmail(e.target.value)
+            onChange={(e) => {
+              setEmail(e.target.value)
             }}
             className="w-full px-4 py-2.5 rounded-md
                        border border-gray-300
                        text-gray-900 placeholder-gray-400
-                       focus:outline-none focus:border-black"
-          />
+                       focus:outline-none focus:border-black"/>
 
           <input
             type="password"
-            
             placeholder="Enter Password"
             value={password}
-            onChange={(e)=>{
-                setPassword(e.target.value)
+            onChange={(e) => {
+              setPassword(e.target.value)
             }}
             className="w-full px-4 py-2.5 rounded-md
                        border border-gray-300
                        text-gray-900 placeholder-gray-400
-                       focus:outline-none focus:border-black"
-          />
+                       focus:outline-none focus:border-black"/>
 
           <button
             className="w-full py-2.5 rounded-md
                        bg-black text-white font-medium
-                       hover:bg-gray-800 transition"
-            
-          >
+                       hover:bg-gray-800 transition">
             Create Account
           </button>
-
         </form>
-
       </div>
     </div>
   )
