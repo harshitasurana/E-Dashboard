@@ -41,4 +41,39 @@ app.post('/add-product',async(req,res)=>{
     res.json(result)
 })
 
+app.get('/products',async(req,res)=>{
+    let products=await ProductData.find()
+    if(products.length>0)(
+        res.send(products)
+    )
+    else{
+        res.send({result:"No Products Found"})
+    }
+})
+
+app.delete('/delete-product/:id',async(req,res)=>{
+    const result=await ProductData.deleteOne({_id:req.params.id})
+    res.send(result)
+
+})
+
+app.get('/product/:id', async (req, res) => {
+    const result = await ProductData.findOne({ _id: req.params.id })
+    res.json(result)
+})
+
+
+app.put('/update-product/:id', async (req, res) => {
+    try {
+        const result = await ProductData.updateOne(
+            { _id: req.params.id },
+            { $set: req.body }
+        )
+        res.send(result)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
+
 app.listen(3200)

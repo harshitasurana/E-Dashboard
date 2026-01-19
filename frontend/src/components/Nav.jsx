@@ -38,12 +38,6 @@ const Nav = () => {
           </Link>
         </li>
 
-        <li className="mr-8">
-          <Link to="/update" className="hover:text-white transition">
-            Update Product
-          </Link>
-        </li>
-
         {/* Right menu */}
         <li className="ml-auto mr-6 text-gray-400">
           Hi, <span className="text-white">{JSON.parse(auth).name}</span>
