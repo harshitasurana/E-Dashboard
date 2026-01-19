@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import('./db/config.js')
 import UserData from './db/UserData.js'
+import ProductData from './db/ProductData.js'
+
 const app = express()
 
 app.use(express.json())
@@ -31,6 +33,12 @@ app.post('/login', async (req, res) => {
     }else{
         res.send({result:'No user found'})
     }
+})
+
+app.post('/add-product',async(req,res)=>{
+    let product=new ProductData(req.body)
+    let result=await product.save()
+    res.json(result)
 })
 
 app.listen(3200)
