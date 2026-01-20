@@ -8,6 +8,7 @@ import Login from './components/Login'
 import AddProduct from './pages/AddProduct'
 import Products from './pages/Products'
 import UpdateProduct from './pages/UpdateProduct'
+import PageWrapper from './components/animations/PageWrapper'
 
 const App = () => {
 
@@ -19,17 +20,17 @@ const App = () => {
 
         <Routes>
           <Route element={<PrivateComponent />}>
-            <Route path='/' element={<Products
-            />
+            <Route path='/' element={<PageWrapper><Products
+            /></PageWrapper>
             }></Route>
-            <Route path='/add-product' element={<AddProduct />}></Route>
-            <Route path='/update/:id' element={<UpdateProduct />}></Route>
+            <Route path='/add-product' element={<PageWrapper><AddProduct /></PageWrapper>}></Route>
+            <Route path='/update/:id' element={<PageWrapper><UpdateProduct /></PageWrapper>}></Route>
             <Route path='/logout' element={<h1> logout Productcomponent</h1>}></Route>
             <Route path='/profile' element={<h1> profile Productcomponent</h1>}></Route>
           </Route>
 
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<PageWrapper><SignUp /></PageWrapper>} />
+          <Route path='/login' element={<PageWrapper><Login /></PageWrapper>} />
         </Routes>
       </main>
       <Footer />
