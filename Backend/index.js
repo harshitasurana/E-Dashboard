@@ -4,6 +4,9 @@ import cors from 'cors'
 import('./db/config.js')
 import UserData from './db/UserData.js'
 import ProductData from './db/ProductData.js'
+import jwt from 'jsonwebtoken'
+
+const jwtKey = 'harshi'
 
 const app = express()
 
@@ -15,7 +18,13 @@ app.post('/register', async (req, res) => {
     result = result.toObject()
     delete result.password
 
-    res.send(result)
+    jwt.sign({ result }, jwtKey, { expiresIn: "2h" }, (err, token) => {
+        if (err) {
+            res.send({ result: "Something went wrong" })
+        }
+
+        res.send({ result, auth: token })
+    })
 
 })
 
@@ -24,21 +33,83 @@ app.post('/login', async (req, res) => {
     if (req.body.email && req.body.password) {
 
         if (user) {
+            jwt.sign({ user }, jwtKey, { expiresIn: "2h" }, (err, token) => {
+                if (err) {
+                    res.send({ result: "Something went wrong" })
+                }
 
-            res.send(user)
+                res.send({ user, auth: token })
+            })
+
         }
         else {
             res.send({ result: 'No user found' })
         }
-    }else{
-        res.send({result:'No user found'})
+    } else {
+        res.send({ result: 'No user found' })
     }
 })
 
-app.post('/add-product',async(req,res)=>{
-    let product=new ProductData(req.body)
-    let result=await product.save()
+app.post('/add-product', async (req, res) => {
+    let product = new ProductData(req.body)
+    let result = await product.save()
     res.json(result)
 })
+
+app.get('/products', async (req, res) => {
+    let products = await ProductData.find()
+    if (products.length > 0) (
+        res.send(products)
+    )
+    else {
+        res.send({ result: "No Products Found" })
+    }
+})
+
+app.delete('/delete-product/:id', async (req, res) => {
+    const result = await ProductData.deleteOne({ _id: req.params.id })
+    res.send(result)
+
+})
+
+app.get('/product/:id', async (req, res) => {
+    const result = await ProductData.findOne({ _id: req.params.id })
+    res.json(result)
+})
+
+
+app.put('/update-product/:id', async (req, res) => {
+    try {
+        const result = await ProductData.updateOne(
+            { _id: req.params.id },
+            { $set: req.body }
+        )
+        res.send(result)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
+app.get('/search/:key', async (req, res) => {
+    try {
+        const key = req.params.key
+
+        const result = await ProductData.find({
+            $or: [
+                { productId: { $regex: key, $options: 'i' } },
+                { name: { $regex: key, $options: 'i' } },
+                { company: { $regex: key, $options: 'i' } },
+                { category: { $regex: key, $options: 'i' } },
+                { description: { $regex: key, $options: 'i' } }
+            ]
+        })
+
+        res.json(result)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
+
 
 app.listen(3200)

@@ -6,6 +6,8 @@ import SignUp from './components/SignUp'
 import PrivateComponent from './components/PrivateComponent'
 import Login from './components/Login'
 import AddProduct from './pages/AddProduct'
+import Products from './pages/Products'
+import UpdateProduct from './pages/UpdateProduct'
 
 const App = () => {
 
@@ -17,9 +19,11 @@ const App = () => {
 
         <Routes>
           <Route element={<PrivateComponent />}>
-            <Route path='/' element={<h1>Product listing component</h1>}></Route>
+            <Route path='/' element={<Products
+            />
+            }></Route>
             <Route path='/add-product' element={<AddProduct />}></Route>
-            <Route path='/update' element={<h1> Update Productcomponent</h1>}></Route>
+            <Route path='/update/:id' element={<UpdateProduct />}></Route>
             <Route path='/logout' element={<h1> logout Productcomponent</h1>}></Route>
             <Route path='/profile' element={<h1> profile Productcomponent</h1>}></Route>
           </Route>
