@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const AddProduct = () => {
+    const navigate=useNavigate()
     const [productId, setProductId] = useState('')
     const [name, setName] = useState('')
     const [company, setCompany] = useState('')
@@ -21,7 +23,9 @@ const AddProduct = () => {
             } 
         }) 
         details = await details.json() 
-        console.log(details);
+        if(details){
+            navigate('/')
+        }
         
 
     }
