@@ -1,4 +1,4 @@
-****E-Commerce Product Management Dashboard****
+####E-Commerce Product Management Dashboard####
 
 A full-stack E-Commerce Product Management Dashboard built using React, Node.js, Express, and MongoDB. This application is designed to manage products efficiently with authentication, search functionality, 
 and a modern admin-style interface similar to real-world internal dashboards.
@@ -65,23 +65,23 @@ Tech Stack
 
 ****Frontend****
 
-  React
+ >> React
   
-  React Router
+ >> React Router
   
-  Tailwind CSS
+ >> Tailwind CSS
   
-  GSAP (GreenSock Animation Platform)
+ >> GSAP (GreenSock Animation Platform)
   
-  Lucide Icons
+ >> Lucide Icons
 
 ****Backend****
 
-  Node.js
+  >> Node.js
   
-  Express.js
+ >> Express.js
   
-  MongoDB
+ >> MongoDB
   
-  JWT Authentication
+>> JWT Authentication
 
