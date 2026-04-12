@@ -196,5 +196,6 @@ MIT License
 ---
 ## 👩‍💻 Author
 
-Gunu Jain
+Harshita Surana
+
 B.Tech AI-ML Student
